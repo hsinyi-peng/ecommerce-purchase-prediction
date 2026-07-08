@@ -87,10 +87,10 @@ log_model <- glm(purchased ~ ., family=binomial, data=train_data)
 
 # --------- 6) CART (Classification Tree) ---------
 dt_model <- rpart(purchased ~ ., data = train_data, method = "class",
-                  control = rpart.control(cp = 0.0003))
+                  control = rpart.control(cp = 0.002))
 png("outputs/plot_decision_tree.png", width = 1000, height = 700)
 prp(dt_model, type = 2, extra = 104,
-    main="Decision Tree: Purchase Intent Logic")
+    main="Pruned Decision Tree: Purchase Intent Logic")
 dev.off()
 prob_dt <- predict(dt_model, newdata = test_data, type = "prob")[,2]
 
